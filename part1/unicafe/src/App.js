@@ -21,10 +21,6 @@ const App = () => {
   const [bad, setBad] = useState(0);
 
   const handleGoodClick = () => setGood(good + 1);
-  const handleNeutralClick = () => setNeutral(neutral + 1);
-  const handleBadClick = () => setBad(bad + 1);
-  const [selected, setSelected] = useState(0);
-
   const anecdotes = [
     "If it hurts, do it more often.",
     "Adding manpower to a late software project makes it later!",
@@ -35,10 +31,19 @@ const App = () => {
     "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.",
     "The only way to go fast, is to go well.",
   ];
+  const handleNeutralClick = () => setNeutral(neutral + 1);
+  const handleBadClick = () => setBad(bad + 1);
+  const [selected, setSelected] = useState(0);
+  const [points, setPoints] = useState(new Array(anecdotes.length).fill(0));
 
   const onAnecdoteClick = () => {
     const randomNumber = Math.floor(Math.random() * anecdotes.length);
     setSelected(randomNumber);
+  };
+
+  const onVoteClick = () => {
+    points.splice(selected, 1, points[selected] + 1);
+    setPoints([...points]);
   };
 
   return (
@@ -66,7 +71,11 @@ const App = () => {
       </table>
 
       <p>{anecdotes[selected]}</p>
-      <button onClick={onAnecdoteClick}>next anecdote</button>
+      <div>
+        <button onClick={onVoteClick}>vote</button>
+        <p>has {points[selected]} votes</p>
+        <button onClick={onAnecdoteClick}>next anecdote</button>
+      </div>
     </div>
   );
 };
