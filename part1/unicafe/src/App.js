@@ -4,7 +4,14 @@ import Button from "./Button";
 import React from "react";
 
 const StatisticLine = ({ text, value }) => {
-  return <p>{`${text} ${value}`}</p>;
+  return (
+    <tr>
+      <td>
+        <p>{`${text} `}</p>
+      </td>
+      <td>{value}</td>
+    </tr>
+  );
 };
 
 const App = () => {
@@ -26,17 +33,20 @@ const App = () => {
       <Button text="bad" handleClick={handleBadClick} />
 
       <h2>statistics</h2>
-
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="neutral" value={neutral} />
-      <StatisticLine text="bad" value={bad} />
-      <StatisticLine text="all" value={good + neutral + bad} />
-      <StatisticLine
-        text="average"
-        value={(good * 1 + neutral * 0 + bad * -1) / 9}
-      />
-      <StatisticLine text="positive" value={`${(good / 9) * 100} %`} />
+      <table>
+        <tbody>
+          <StatisticLine text="good" value={good} />
+          <StatisticLine text="good" value={good} />
+          <StatisticLine text="neutral" value={neutral} />
+          <StatisticLine text="bad" value={bad} />
+          <StatisticLine text="all" value={good + neutral + bad} />
+          <StatisticLine
+            text="average"
+            value={(good * 1 + neutral * 0 + bad * -1) / 9}
+          />
+          <StatisticLine text="positive" value={`${(good / 9) * 100} %`} />
+        </tbody>
+      </table>
     </div>
   );
 };
