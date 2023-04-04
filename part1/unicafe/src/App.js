@@ -3,20 +3,8 @@ import Button from "./Button";
 
 import React from "react";
 
-export const Statistics = (props) => {
-  const { good, neutral, bad } = props;
-  if (!good > 0 && !neutral > 0 && !bad > 0) return <p>No feedback given</p>;
-
-  return (
-    <>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {good + neutral + bad}</p>
-      <p>average {(good * 1 + neutral * 0 + bad * -1) / 9}</p>
-      <p>positive {(good / 9) * 100} %</p>
-    </>
-  );
+const StatisticLine = ({ text, value }) => {
+  return <p>{`${text} ${value}`}</p>;
 };
 
 const App = () => {
@@ -39,7 +27,16 @@ const App = () => {
 
       <h2>statistics</h2>
 
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="neutral" value={neutral} />
+      <StatisticLine text="bad" value={bad} />
+      <StatisticLine text="all" value={good + neutral + bad} />
+      <StatisticLine
+        text="average"
+        value={(good * 1 + neutral * 0 + bad * -1) / 9}
+      />
+      <StatisticLine text="positive" value={`${(good / 9) * 100} %`} />
     </div>
   );
 };
