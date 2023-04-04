@@ -46,6 +46,8 @@ const App = () => {
     setPoints([...points]);
   };
 
+  let mostVotesIdx = points.indexOf(Math.max(...points));
+
   return (
     <div>
       <h2>give feedback</h2>
@@ -76,6 +78,10 @@ const App = () => {
         <p>has {points[selected]} votes</p>
         <button onClick={onAnecdoteClick}>next anecdote</button>
       </div>
+
+      <h3>Anecdote with most votes</h3>
+      <p>{anecdotes[mostVotesIdx]}</p>
+      <p>has {points[mostVotesIdx]} votes</p>
     </div>
   );
 };
