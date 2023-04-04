@@ -47,7 +47,6 @@ const App = () => {
   };
 
   let mostVotesIdx = points.indexOf(Math.max(...points));
-
   return (
     <div>
       <h2>give feedback</h2>
