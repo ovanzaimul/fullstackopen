@@ -5,6 +5,8 @@ import React from "react";
 
 export const Statistics = (props) => {
   const { good, neutral, bad } = props;
+  if (!good > 0 && !neutral > 0 && !bad > 0) return <p>No feedback given</p>;
+
   return (
     <>
       <p>good {good}</p>
@@ -12,7 +14,7 @@ export const Statistics = (props) => {
       <p>bad {bad}</p>
       <p>all {good + neutral + bad}</p>
       <p>average {(good * 1 + neutral * 0 + bad * -1) / 9}</p>
-      <p>positive {(6 / 9) * 100} %</p>
+      <p>positive {(good / 9) * 100} %</p>
     </>
   );
 };
