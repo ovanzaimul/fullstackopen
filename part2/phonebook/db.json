@@ -19,6 +19,21 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
+    },
+    {
+      "name": "ovan",
+      "number": "999",
+      "id": 5
+    },
+    {
+      "name": "ovan baru",
+      "number": "89898",
+      "id": 6
+    },
+    {
+      "name": "add using rest api",
+      "number": "123431",
+      "id": 7
     }
   ]
 }

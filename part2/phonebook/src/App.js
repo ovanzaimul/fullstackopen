@@ -5,6 +5,8 @@ import Filter from "./Components/Filter";
 import PersonForm from "./Components/PersonForm";
 import Persons from "./Components/Persons";
 
+const baseURL = "http://localhost:3001/persons";
+
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [filteredPersons, setFilteredPersons] = useState(persons);
@@ -30,19 +32,22 @@ const App = () => {
     if (isAlreadyExist) {
       return alert(`${newName} is already added to phonebook`);
     }
-    setPersons(
-      persons.concat({
-        name: newName,
-        number: newNumber,
-        id: persons.length + 1,
-      })
-    );
+
+    const newPerson = {
+      name: newName,
+      number: newNumber,
+      id: persons.length + 1,
+    };
+
+    axios.post(baseURL, newPerson).then((response) => {
+      setPersons(persons.concat(response.data));
+    });
     setNewName("");
     setNewNumber("");
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3001/persons").then((response) => {
+    axios.get(baseURL).then((response) => {
       setPersons(response.data);
     });
   }, []);
