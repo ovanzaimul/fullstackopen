@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Filter from "./Components/Filter";
+import PersonForm from "./Components/PersonForm";
+import Persons from "./Components/Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -27,11 +30,18 @@ const App = () => {
   const addName = (e) => {
     e.preventDefault();
     const isAlreadyExist = persons.some((person) => person.name === newName);
-    setNewName("");
     if (isAlreadyExist) {
       return alert(`${newName} is already added to phonebook`);
     }
-    setPersons(persons.concat({ name: newName, number: newNumber }));
+    setPersons(
+      persons.concat({
+        name: newName,
+        number: newNumber,
+        id: persons.length + 1,
+      })
+    );
+    setNewName("");
+    setNewNumber("");
   };
 
   useEffect(() => {
@@ -42,31 +52,22 @@ const App = () => {
           return person.name.toLowerCase().includes(searchText);
         });
     setFilteredPersons(newPersons);
-  }, [searchName]);
+  }, [JSON.stringify(persons), searchName]);
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with{" "}
-        <input type="text" value={searchName} onChange={handleSearch} />
-      </div>
+      <Filter onSearch={handleSearch} value={searchName} />
       <h2>add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        onSubmitForm={addName}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
-      {filteredPersons.map((person) => (
-        <p key={person.name}>{`${person.name} ${person.number}`}</p>
-      ))}
+      <Persons persons={filteredPersons} />
     </div>
   );
 };
