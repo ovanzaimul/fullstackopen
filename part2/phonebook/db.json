@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
       "id": 2
@@ -24,21 +19,6 @@
       "name": "ovan",
       "number": "999",
       "id": 5
-    },
-    {
-      "name": "ovan baru",
-      "number": "89898",
-      "id": 6
-    },
-    {
-      "name": "add using rest api",
-      "number": "123431",
-      "id": 7
-    },
-    {
-      "name": "zaid",
-      "number": "999888",
-      "id": 8
     }
   ]
 }

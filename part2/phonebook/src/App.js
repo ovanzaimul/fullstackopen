@@ -45,6 +45,10 @@ const App = () => {
     setNewNumber("");
   };
 
+  const handleDeletePerson = (id) => {
+    personService.deletePerson(id).then((res) => {});
+  };
+
   useEffect(() => {
     personService.getAll().then((persons) => {
       setPersons(persons);
@@ -74,7 +78,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons persons={filteredPersons} />
+      <Persons onDelete={handleDeletePerson} persons={filteredPersons} />
     </div>
   );
 };
