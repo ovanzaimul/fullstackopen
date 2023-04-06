@@ -46,11 +46,17 @@ const App = () => {
                 person.id !== foundPerson.id ? person : response
               )
             );
+            setNotification({
+              type: "success",
+              message: `changed ${newName} number`,
+            });
+          })
+          .catch((err) => {
+            setNotification({
+              type: "error",
+              message: `Information of ${newName} has already been removed from server`,
+            });
           });
-        setNotification({
-          type: "success",
-          message: `changed ${newName} number`,
-        });
 
         setNewName("");
         setNewNumber("");
