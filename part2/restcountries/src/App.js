@@ -43,7 +43,12 @@ function App() {
       return (
         <ul>
           {countries.map((country) => (
-            <li>{country?.name?.common}</li>
+            <li>
+              {country?.name?.common}{" "}
+              <button onClick={() => setCountryName(country.name.common)}>
+                show
+              </button>
+            </li>
           ))}
         </ul>
       );
